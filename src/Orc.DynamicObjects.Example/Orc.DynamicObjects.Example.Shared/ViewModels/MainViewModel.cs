@@ -18,6 +18,7 @@ namespace Orc.DynamicObjects.ViewModels
     {
         public MainViewModel()
         {
+            Title = "Orc.DynamicObjects example";
         }
 
         #region Properties
