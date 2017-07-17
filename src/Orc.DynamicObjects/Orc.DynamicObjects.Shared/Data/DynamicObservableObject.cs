@@ -50,8 +50,6 @@ namespace Orc.DynamicObjects
         {
             Argument.IsNotNullOrWhitespace(() => propertyName);
 
-            RaisePropertyChanging(propertyName);
-
             var oldValue = default(object);
             _dynamicProperties.TryGetValue(propertyName, out oldValue);
             _dynamicProperties[propertyName] = value;

@@ -99,56 +99,6 @@ namespace Orc.DynamicObjects.Tests
             }
 
             [TestCase]
-            public void RaisesAdvancedPropertyChangingEvents_WhenSetViaDynamicProperty()
-            {
-                var counter = 0;
-                var propertyName = default(string);
-                var observableObject = new CustomObject();
-                dynamic dynamicObservableObject = observableObject;
-
-                // Setting value via dynamic property.
-                dynamicObservableObject.Property1 = "oldtest";
-                observableObject.PropertyChanging += (sender, e) =>
-                {
-                    AdvancedPropertyChangingEventArgs args = e as AdvancedPropertyChangingEventArgs;
-                    if (args != null)
-                    {
-                        counter++;
-                        propertyName = args.PropertyName;
-                    }
-                };
-                dynamicObservableObject.Property1 = "newtest";
-
-                Assert.AreEqual(1, counter);
-                Assert.AreEqual(propertyName, "Property1");
-            }
-
-            [TestCase]
-            public void RaisesAdvancedPropertyChangingEvents_WhenSetViaSetValueMethod()
-            {
-                var counter = 0;
-                var propertyName = default(string);
-                var observableObject = new CustomObject();
-                dynamic dynamicObservableObject = observableObject;
-
-                // Setting value via SetValue method.
-                observableObject.SetValue("Property1", "oldtest");
-                observableObject.PropertyChanging += (sender, e) =>
-                {
-                    AdvancedPropertyChangingEventArgs args = e as AdvancedPropertyChangingEventArgs;
-                    if (args != null)
-                    {
-                        counter++;
-                        propertyName = args.PropertyName;
-                    }
-                };
-                observableObject.SetValue("Property1", "newtest");
-
-                Assert.AreEqual(1, counter);
-                Assert.AreEqual(propertyName, "Property1");
-            }
-
-            [TestCase]
             public void RaisesAdvancedPropertyChangedEvents_WhenSetViaDynamicProperty()
             {
                 var counter = 0;
