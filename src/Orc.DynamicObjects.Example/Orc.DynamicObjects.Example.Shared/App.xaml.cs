@@ -38,7 +38,7 @@ namespace Orc.DynamicObjects.Example
 
             base.OnStartup(e);
 
-            StyleHelper.CreateStyleForwardersForDefaultStyles();
+            //StyleHelper.CreateStyleForwardersForDefaultStyles();
         }
     }
 }

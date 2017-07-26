@@ -35,8 +35,10 @@ namespace Orc.DynamicObjects
         {
             var bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic;
 
-            _getValueFastMethodInfo = typeof(ModelBase).GetMethodEx("GetValueFast", bindingFlags).MakeGenericMethod(new [] { typeof(object) });
-            _setValueFastMethodInfo = typeof(ModelBase).GetMethodEx("SetValueFast", bindingFlags);
+            var modelBaseType = typeof(ModelBase);
+
+            _getValueFastMethodInfo = modelBaseType.GetMethodEx("GetValueFromPropertyBag", bindingFlags).MakeGenericMethod(new [] { typeof(object) });
+            _setValueFastMethodInfo = modelBaseType.GetMethodEx("SetValueToPropertyBag", bindingFlags);
         }
 
         /// <summary>
