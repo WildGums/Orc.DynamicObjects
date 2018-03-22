@@ -4,6 +4,11 @@ VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{1FE0D431-A761-4239-B2D6-D32C70723FD2}"
 	ProjectSection(SolutionItems) = preProject
+		Directory.build.project.props = Directory.build.project.props
+		Directory.build.props = Directory.build.props
+		Directory.build.shared.explicit.props = Directory.build.shared.explicit.props
+		Directory.build.shared.implicit.props = Directory.build.shared.implicit.props
+		Directory.build.targets = Directory.build.targets
 		GlobalSuppressions.cs = GlobalSuppressions.cs
 		MethodTimeLogger.cs = MethodTimeLogger.cs
 		nuget.config = nuget.config
@@ -19,86 +24,39 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D3EA1078
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example", "Example", "{672BFA2E-9F93-496F-B188-40579FB5D301}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.DynamicObjects.NET45", "Orc.DynamicObjects\Orc.DynamicObjects.NET45\Orc.DynamicObjects.NET45.csproj", "{B5E4D25E-ED65-4EB0-BDEC-3238717559A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orc.DynamicObjects", "Orc.DynamicObjects\Orc.DynamicObjects.csproj", "{993CF17D-8460-4AD1-A03E-87A0B0DC3D15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.DynamicObjects.NET46", "Orc.DynamicObjects\Orc.DynamicObjects.NET46\Orc.DynamicObjects.NET46.csproj", "{541E3997-8605-4315-9B04-B60734AC84D6}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Orc.DynamicObjects.Example.Shared", "Orc.DynamicObjects.Example.Shared\Orc.DynamicObjects.Example.Shared.shproj", "{7367CB32-FDBD-45A5-A5B2-25121DB69AD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.DynamicObjects.NET47", "Orc.DynamicObjects\Orc.DynamicObjects.NET47\Orc.DynamicObjects.NET47.csproj", "{8F40EDFB-0CF4-4439-93AF-B5578BF38C87}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Orc.DynamicObjects.Tests.Shared", "Orc.DynamicObjects.Tests.Shared\Orc.DynamicObjects.Tests.Shared.shproj", "{7D9A5A42-5C76-492C-86E5-E5BA52D45F7B}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Orc.DynamicObjects.Shared", "Orc.DynamicObjects\Orc.DynamicObjects.Shared\Orc.DynamicObjects.Shared.shproj", "{C7C29BC3-7A1B-422D-81C3-C078217190A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.DynamicObjects.Tests.NET", "Orc.DynamicObjects.Tests.NET\Orc.DynamicObjects.Tests.NET.csproj", "{D439D8C3-12BE-46D8-A821-F6B438CD4911}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.DynamicObjects.Tests.NET45", "Orc.DynamicObjects.Tests\Orc.DynamicObjects.Tests.NET45\Orc.DynamicObjects.Tests.NET45.csproj", "{72167BAB-112A-4E1C-9801-23CA26E3A99B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.DynamicObjects.Tests.NET46", "Orc.DynamicObjects.Tests\Orc.DynamicObjects.Tests.NET46\Orc.DynamicObjects.Tests.NET46.csproj", "{D439D8C3-12BE-46D8-A821-F6B438CD4911}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.DynamicObjects.Tests.NET47", "Orc.DynamicObjects.Tests\Orc.DynamicObjects.Tests.NET47\Orc.DynamicObjects.Tests.NET47.csproj", "{8B85DC6A-3EB3-4416-8A62-9887AB3F166E}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Orc.DynamicObjects.Tests.Shared", "Orc.DynamicObjects.Tests\Orc.DynamicObjects.Tests.Shared\Orc.DynamicObjects.Tests.Shared.shproj", "{7D9A5A42-5C76-492C-86E5-E5BA52D45F7B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.DynamicObjects.Example.NET45", "Orc.DynamicObjects.Example\Orc.DynamicObjects.Example.NET45\Orc.DynamicObjects.Example.NET45.csproj", "{9DA2E540-EEE9-4354-8BBF-E12E8441F3F9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.DynamicObjects.Example.NET46", "Orc.DynamicObjects.Example\Orc.DynamicObjects.Example.NET46\Orc.DynamicObjects.Example.NET46.csproj", "{12F3DF3F-2AA9-45AC-B1F1-316566AA8C54}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orc.DynamicObjects.Example.NET47", "Orc.DynamicObjects.Example\Orc.DynamicObjects.Example.NET47\Orc.DynamicObjects.Example.NET47.csproj", "{A19B7313-8D1E-4454-8F5B-9AF582C52AF2}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Orc.DynamicObjects.Example.Shared", "Orc.DynamicObjects.Example\Orc.DynamicObjects.Example.Shared\Orc.DynamicObjects.Example.Shared.shproj", "{7367CB32-FDBD-45A5-A5B2-25121DB69AD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orc.DynamicObjects.Example.NET", "Orc.DynamicObjects.Example.NET\Orc.DynamicObjects.Example.NET.csproj", "{192DD02C-A4FE-4A55-8518-5D13D24CB118}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Orc.DynamicObjects.Example\Orc.DynamicObjects.Example.Shared\Orc.DynamicObjects.Example.Shared.projitems*{12f3df3f-2aa9-45ac-b1f1-316566aa8c54}*SharedItemsImports = 4
-		Orc.DynamicObjects\Orc.DynamicObjects.Shared\Orc.DynamicObjects.Shared.projitems*{541e3997-8605-4315-9b04-b60734ac84d6}*SharedItemsImports = 4
-		Orc.DynamicObjects.Tests\Orc.DynamicObjects.Tests.Shared\Orc.DynamicObjects.Tests.Shared.projitems*{72167bab-112a-4e1c-9801-23ca26e3a99b}*SharedItemsImports = 4
-		Orc.DynamicObjects.Example\Orc.DynamicObjects.Example.Shared\Orc.DynamicObjects.Example.Shared.projitems*{7367cb32-fdbd-45a5-a5b2-25121db69ad8}*SharedItemsImports = 13
-		Orc.DynamicObjects.Tests\Orc.DynamicObjects.Tests.Shared\Orc.DynamicObjects.Tests.Shared.projitems*{7d9a5a42-5c76-492c-86e5-e5ba52d45f7b}*SharedItemsImports = 13
-		Orc.DynamicObjects.Tests\Orc.DynamicObjects.Tests.Shared\Orc.DynamicObjects.Tests.Shared.projitems*{8b85dc6a-3eb3-4416-8a62-9887ab3f166e}*SharedItemsImports = 4
-		Orc.DynamicObjects\Orc.DynamicObjects.Shared\Orc.DynamicObjects.Shared.projitems*{8f40edfb-0cf4-4439-93af-b5578bf38c87}*SharedItemsImports = 4
-		Orc.DynamicObjects.Example\Orc.DynamicObjects.Example.Shared\Orc.DynamicObjects.Example.Shared.projitems*{9da2e540-eee9-4354-8bbf-e12e8441f3f9}*SharedItemsImports = 4
-		Orc.DynamicObjects.Example\Orc.DynamicObjects.Example.Shared\Orc.DynamicObjects.Example.Shared.projitems*{a19b7313-8d1e-4454-8f5b-9af582c52af2}*SharedItemsImports = 4
-		Orc.DynamicObjects\Orc.DynamicObjects.Shared\Orc.DynamicObjects.Shared.projitems*{b5e4d25e-ed65-4eb0-bdec-3238717559a7}*SharedItemsImports = 4
-		Orc.DynamicObjects\Orc.DynamicObjects.Shared\Orc.DynamicObjects.Shared.projitems*{c7c29bc3-7a1b-422d-81c3-c078217190a8}*SharedItemsImports = 13
-		Orc.DynamicObjects.Tests\Orc.DynamicObjects.Tests.Shared\Orc.DynamicObjects.Tests.Shared.projitems*{d439d8c3-12be-46d8-a821-f6b438cd4911}*SharedItemsImports = 4
+		Orc.DynamicObjects.Example.Shared\Orc.DynamicObjects.Example.Shared.projitems*{7367cb32-fdbd-45a5-a5b2-25121db69ad8}*SharedItemsImports = 13
+		Orc.DynamicObjects.Tests.Shared\Orc.DynamicObjects.Tests.Shared.projitems*{7d9a5a42-5c76-492c-86e5-e5ba52d45f7b}*SharedItemsImports = 13
+		Orc.DynamicObjects.Tests.Shared\Orc.DynamicObjects.Tests.Shared.projitems*{d439d8c3-12be-46d8-a821-f6b438cd4911}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B5E4D25E-ED65-4EB0-BDEC-3238717559A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B5E4D25E-ED65-4EB0-BDEC-3238717559A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B5E4D25E-ED65-4EB0-BDEC-3238717559A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B5E4D25E-ED65-4EB0-BDEC-3238717559A7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{541E3997-8605-4315-9B04-B60734AC84D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{541E3997-8605-4315-9B04-B60734AC84D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{541E3997-8605-4315-9B04-B60734AC84D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{541E3997-8605-4315-9B04-B60734AC84D6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8F40EDFB-0CF4-4439-93AF-B5578BF38C87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8F40EDFB-0CF4-4439-93AF-B5578BF38C87}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8F40EDFB-0CF4-4439-93AF-B5578BF38C87}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8F40EDFB-0CF4-4439-93AF-B5578BF38C87}.Release|Any CPU.Build.0 = Release|Any CPU
-		{72167BAB-112A-4E1C-9801-23CA26E3A99B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{72167BAB-112A-4E1C-9801-23CA26E3A99B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{72167BAB-112A-4E1C-9801-23CA26E3A99B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{72167BAB-112A-4E1C-9801-23CA26E3A99B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{993CF17D-8460-4AD1-A03E-87A0B0DC3D15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{993CF17D-8460-4AD1-A03E-87A0B0DC3D15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{993CF17D-8460-4AD1-A03E-87A0B0DC3D15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{993CF17D-8460-4AD1-A03E-87A0B0DC3D15}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D439D8C3-12BE-46D8-A821-F6B438CD4911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D439D8C3-12BE-46D8-A821-F6B438CD4911}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D439D8C3-12BE-46D8-A821-F6B438CD4911}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D439D8C3-12BE-46D8-A821-F6B438CD4911}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8B85DC6A-3EB3-4416-8A62-9887AB3F166E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8B85DC6A-3EB3-4416-8A62-9887AB3F166E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8B85DC6A-3EB3-4416-8A62-9887AB3F166E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8B85DC6A-3EB3-4416-8A62-9887AB3F166E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9DA2E540-EEE9-4354-8BBF-E12E8441F3F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9DA2E540-EEE9-4354-8BBF-E12E8441F3F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9DA2E540-EEE9-4354-8BBF-E12E8441F3F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9DA2E540-EEE9-4354-8BBF-E12E8441F3F9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{12F3DF3F-2AA9-45AC-B1F1-316566AA8C54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{12F3DF3F-2AA9-45AC-B1F1-316566AA8C54}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{12F3DF3F-2AA9-45AC-B1F1-316566AA8C54}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{12F3DF3F-2AA9-45AC-B1F1-316566AA8C54}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A19B7313-8D1E-4454-8F5B-9AF582C52AF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A19B7313-8D1E-4454-8F5B-9AF582C52AF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A19B7313-8D1E-4454-8F5B-9AF582C52AF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A19B7313-8D1E-4454-8F5B-9AF582C52AF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{192DD02C-A4FE-4A55-8518-5D13D24CB118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{192DD02C-A4FE-4A55-8518-5D13D24CB118}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{192DD02C-A4FE-4A55-8518-5D13D24CB118}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{192DD02C-A4FE-4A55-8518-5D13D24CB118}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,17 +65,13 @@ Global
 		{0787DFC6-AB24-4D00-A8A4-FF203DC7D080} = {A8A1A4EE-E04A-43AB-90C9-41E7B82EE1E5}
 		{D3EA1078-BF3D-4709-871C-AAFF70B95045} = {A8A1A4EE-E04A-43AB-90C9-41E7B82EE1E5}
 		{672BFA2E-9F93-496F-B188-40579FB5D301} = {A8A1A4EE-E04A-43AB-90C9-41E7B82EE1E5}
-		{B5E4D25E-ED65-4EB0-BDEC-3238717559A7} = {0787DFC6-AB24-4D00-A8A4-FF203DC7D080}
-		{541E3997-8605-4315-9B04-B60734AC84D6} = {0787DFC6-AB24-4D00-A8A4-FF203DC7D080}
-		{8F40EDFB-0CF4-4439-93AF-B5578BF38C87} = {0787DFC6-AB24-4D00-A8A4-FF203DC7D080}
-		{C7C29BC3-7A1B-422D-81C3-C078217190A8} = {0787DFC6-AB24-4D00-A8A4-FF203DC7D080}
-		{72167BAB-112A-4E1C-9801-23CA26E3A99B} = {D3EA1078-BF3D-4709-871C-AAFF70B95045}
-		{D439D8C3-12BE-46D8-A821-F6B438CD4911} = {D3EA1078-BF3D-4709-871C-AAFF70B95045}
-		{8B85DC6A-3EB3-4416-8A62-9887AB3F166E} = {D3EA1078-BF3D-4709-871C-AAFF70B95045}
-		{7D9A5A42-5C76-492C-86E5-E5BA52D45F7B} = {D3EA1078-BF3D-4709-871C-AAFF70B95045}
-		{9DA2E540-EEE9-4354-8BBF-E12E8441F3F9} = {672BFA2E-9F93-496F-B188-40579FB5D301}
-		{12F3DF3F-2AA9-45AC-B1F1-316566AA8C54} = {672BFA2E-9F93-496F-B188-40579FB5D301}
-		{A19B7313-8D1E-4454-8F5B-9AF582C52AF2} = {672BFA2E-9F93-496F-B188-40579FB5D301}
+		{993CF17D-8460-4AD1-A03E-87A0B0DC3D15} = {0787DFC6-AB24-4D00-A8A4-FF203DC7D080}
 		{7367CB32-FDBD-45A5-A5B2-25121DB69AD8} = {672BFA2E-9F93-496F-B188-40579FB5D301}
+		{7D9A5A42-5C76-492C-86E5-E5BA52D45F7B} = {D3EA1078-BF3D-4709-871C-AAFF70B95045}
+		{D439D8C3-12BE-46D8-A821-F6B438CD4911} = {D3EA1078-BF3D-4709-871C-AAFF70B95045}
+		{192DD02C-A4FE-4A55-8518-5D13D24CB118} = {672BFA2E-9F93-496F-B188-40579FB5D301}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {93D67282-9631-446D-B2FC-61619A9724B3}
 	EndGlobalSection
 EndGlobal
