@@ -4,6 +4,7 @@
     <AssemblyName>Orc.DynamicObjects.Example.NET</AssemblyName>
     <RootNamespace>Orc.DynamicObjects.Example</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
+    <SonarQubeExclude>true</SonarQubeExclude>
   </PropertyGroup>
 
   <PropertyGroup>
