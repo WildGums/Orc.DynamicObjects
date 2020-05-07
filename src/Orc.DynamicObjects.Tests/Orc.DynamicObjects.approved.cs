@@ -1,6 +1,6 @@
-﻿[assembly: System.Resources.NeutralResourcesLanguageAttribute("en-US")]
-[assembly: System.Runtime.Versioning.TargetFrameworkAttribute(".NETFramework,Version=v4.6", FrameworkDisplayName=".NET Framework 4.6")]
-public class static ModuleInitializer
+﻿[assembly: System.Resources.NeutralResourcesLanguage("en-US")]
+[assembly: System.Runtime.Versioning.TargetFramework(".NETFramework,Version=v4.7", FrameworkDisplayName=".NET Framework 4.7")]
+public static class ModuleInitializer
 {
     public static void Initialize() { }
 }
@@ -10,7 +10,7 @@ namespace Orc.DynamicObjects
     {
         public DynamicModelBase() { }
         public System.Dynamic.DynamicMetaObject GetMetaObject(System.Linq.Expressions.Expression parameter) { }
-        protected internal void RegisterDynamicProperty(string name, System.Type type) { }
+        protected void RegisterDynamicProperty(string name, System.Type type) { }
     }
     public class DynamicModelBaseMetaObject : System.Dynamic.DynamicMetaObject
     {
@@ -22,7 +22,7 @@ namespace Orc.DynamicObjects
     {
         public DynamicObservableObject() { }
         public System.Dynamic.DynamicMetaObject GetMetaObject(System.Linq.Expressions.Expression parameter) { }
-        protected internal System.Collections.Generic.IEnumerable<string> GetPropertyNames() { }
+        protected System.Collections.Generic.IEnumerable<string> GetPropertyNames() { }
         public T GetValue<T>(string propertyName) { }
         public void SetValue(string propertyName, object value) { }
     }
