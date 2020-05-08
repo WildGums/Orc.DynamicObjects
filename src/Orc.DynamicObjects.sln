@@ -27,17 +27,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example", "Example", "{672B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orc.DynamicObjects", "Orc.DynamicObjects\Orc.DynamicObjects.csproj", "{C363C62A-3DD3-46BB-9711-C8891D6C4C53}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Orc.DynamicObjects.Example.Shared", "Orc.DynamicObjects.Example.Shared\Orc.DynamicObjects.Example.Shared.shproj", "{7367CB32-FDBD-45A5-A5B2-25121DB69AD8}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orc.DynamicObjects.Example.NET", "Orc.DynamicObjects.Example.NET\Orc.DynamicObjects.Example.NET.csproj", "{192DD02C-A4FE-4A55-8518-5D13D24CB118}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orc.DynamicObjects.Example", "Orc.DynamicObjects.Example\Orc.DynamicObjects.Example.csproj", "{192DD02C-A4FE-4A55-8518-5D13D24CB118}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orc.DynamicObjects.Tests", "Orc.DynamicObjects.Tests\Orc.DynamicObjects.Tests.csproj", "{D00F3F86-5F96-40BA-AF81-278A52623010}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Orc.DynamicObjects.Example.Shared\Orc.DynamicObjects.Example.Shared.projitems*{192dd02c-a4fe-4a55-8518-5d13d24cb118}*SharedItemsImports = 5
-		Orc.DynamicObjects.Example.Shared\Orc.DynamicObjects.Example.Shared.projitems*{7367cb32-fdbd-45a5-a5b2-25121db69ad8}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -64,7 +58,6 @@ Global
 		{D3EA1078-BF3D-4709-871C-AAFF70B95045} = {A8A1A4EE-E04A-43AB-90C9-41E7B82EE1E5}
 		{672BFA2E-9F93-496F-B188-40579FB5D301} = {A8A1A4EE-E04A-43AB-90C9-41E7B82EE1E5}
 		{C363C62A-3DD3-46BB-9711-C8891D6C4C53} = {0787DFC6-AB24-4D00-A8A4-FF203DC7D080}
-		{7367CB32-FDBD-45A5-A5B2-25121DB69AD8} = {672BFA2E-9F93-496F-B188-40579FB5D301}
 		{192DD02C-A4FE-4A55-8518-5D13D24CB118} = {672BFA2E-9F93-496F-B188-40579FB5D301}
 		{D00F3F86-5F96-40BA-AF81-278A52623010} = {D3EA1078-BF3D-4709-871C-AAFF70B95045}
 	EndGlobalSection

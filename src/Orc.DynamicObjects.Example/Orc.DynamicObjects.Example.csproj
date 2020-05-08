@@ -1,7 +1,7 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras">
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.0</TargetFrameworks>
-    <AssemblyName>Orc.DynamicObjects.Example.NET</AssemblyName>
+    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+    <AssemblyName>Orc.DynamicObjects.Example</AssemblyName>
     <RootNamespace>Orc.DynamicObjects.Example</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <SonarQubeExclude>true</SonarQubeExclude>
@@ -36,8 +36,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Orc.DynamicObjects\Orc.DynamicObjects.csproj" />
   </ItemGroup>
-
-  <Import Project="..\Orc.DynamicObjects.Example.Shared\Orc.DynamicObjects.Example.Shared.projitems" Label="Shared" />
 
   <Import Project="$(MSBuildProjectDirectory)\..\Directory.build.shared.props" Condition="Exists('$(MSBuildProjectDirectory)\..\Directory.build.shared.props')" />
 </Project>
