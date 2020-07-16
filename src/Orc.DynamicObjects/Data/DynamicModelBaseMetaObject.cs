@@ -9,6 +9,7 @@ namespace Orc.DynamicObjects
 {
     using System;
     using System.Dynamic;
+    using System.Linq;
     using System.Linq.Expressions;
     using System.Reflection;
     using Catel.Caching;
@@ -37,8 +38,11 @@ namespace Orc.DynamicObjects
 
             var modelBaseType = typeof(ModelBase);
 
-            _getValueFastMethodInfo = modelBaseType.GetMethodEx("GetValueFromPropertyBag", bindingFlags).MakeGenericMethod(new [] { typeof(object) });
-            _setValueFastMethodInfo = modelBaseType.GetMethodEx("SetValueToPropertyBag", bindingFlags);
+            var getMethods = modelBaseType.GetMethodsEx(bindingFlags).Where(x => x.Name == "GetValueFromPropertyBag");
+            _getValueFastMethodInfo = getMethods.First().MakeGenericMethod(new [] { typeof(object) });
+
+            var setMethods = modelBaseType.GetMethodsEx(bindingFlags).Where(x => x.Name == "SetValueToPropertyBag");
+            _setValueFastMethodInfo = setMethods.First(x => x.IsGenericMethod).MakeGenericMethod(new[] { typeof(object) });
         }
 
         /// <summary>
