@@ -113,7 +113,7 @@ namespace Orc.DynamicObjects.Tests
                 observableObject.PropertyChanged += (sender, e) =>
                 {
                     AdvancedPropertyChangedEventArgs args = e as AdvancedPropertyChangedEventArgs;
-                    if (args != null)
+                    if (args is not null)
                     {
                         counter++;
                         propertyName = args.PropertyName;
@@ -144,7 +144,7 @@ namespace Orc.DynamicObjects.Tests
                 observableObject.PropertyChanged += (sender, e) =>
                 {
                     AdvancedPropertyChangedEventArgs args = e as AdvancedPropertyChangedEventArgs;
-                    if (args != null)
+                    if (args is not null)
                     {
                         counter++;
                         propertyName = args.PropertyName;

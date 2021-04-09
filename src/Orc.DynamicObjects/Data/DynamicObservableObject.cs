@@ -22,7 +22,7 @@ namespace Orc.DynamicObjects
         /// <summary>
         /// Dynamic properties.
         /// </summary>
-        private Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
 
         /// <summary>
         /// Get dynamic property value.
@@ -37,7 +37,7 @@ namespace Orc.DynamicObjects
             var value = default(object);
             _dynamicProperties.TryGetValue(propertyName, out value);
 
-            if (value == null) return default(T);
+            if (value is null) return default(T);
             return (T)value;
         }
 
