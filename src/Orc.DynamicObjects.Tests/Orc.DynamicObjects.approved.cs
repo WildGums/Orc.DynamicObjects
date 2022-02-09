@@ -6,6 +6,7 @@ public static class ModuleInitializer
 }
 namespace Orc.DynamicObjects
 {
+    [System.Serializable]
     public class DynamicModelBase : Catel.Data.ModelBase, System.Dynamic.IDynamicMetaObjectProvider
     {
         public DynamicModelBase() { }
