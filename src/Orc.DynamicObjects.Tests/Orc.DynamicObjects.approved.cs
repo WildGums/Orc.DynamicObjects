@@ -1,11 +1,12 @@
 ﻿[assembly: System.Resources.NeutralResourcesLanguage("en-US")]
-[assembly: System.Runtime.Versioning.TargetFramework(".NETCoreApp,Version=v5.0", FrameworkDisplayName="")]
+[assembly: System.Runtime.Versioning.TargetFramework(".NETCoreApp,Version=v6.0", FrameworkDisplayName="")]
 public static class ModuleInitializer
 {
     public static void Initialize() { }
 }
 namespace Orc.DynamicObjects
 {
+    [System.Serializable]
     public class DynamicModelBase : Catel.Data.ModelBase, System.Dynamic.IDynamicMetaObjectProvider
     {
         public DynamicModelBase() { }
