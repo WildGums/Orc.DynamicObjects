@@ -1,6 +1,5 @@
-using Catel.IoC;
+﻿using Catel.IoC;
 using Catel.Services;
-using Orc.DynamicObjects;
 
 /// <summary>
 /// Used by the ModuleInit. All code inside the Initialize method is ran as soon as the assembly is loaded.
@@ -16,7 +15,7 @@ public static class ModuleInitializer
 
 		// TODO: register services here
 
-        var languageService = serviceLocator.ResolveType<ILanguageService>();
+        var languageService = serviceLocator.ResolveRequiredType<ILanguageService>();
         languageService.RegisterLanguageSource(new LanguageResourceSource("Orc.DynamicObjects", "Orc.DynamicObjects.Properties", "Resources"));
     }
 }

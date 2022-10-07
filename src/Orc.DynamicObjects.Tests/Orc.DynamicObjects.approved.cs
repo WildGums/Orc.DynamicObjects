@@ -24,7 +24,7 @@ namespace Orc.DynamicObjects
         public DynamicObservableObject() { }
         public System.Dynamic.DynamicMetaObject GetMetaObject(System.Linq.Expressions.Expression parameter) { }
         protected System.Collections.Generic.IEnumerable<string> GetPropertyNames() { }
-        public T GetValue<T>(string propertyName) { }
+        public T? GetValue<T>(string propertyName) { }
         public void SetValue(string propertyName, object value) { }
     }
     public class DynamicObservableObjectMetaObject : System.Dynamic.DynamicMetaObject

@@ -15,6 +15,7 @@ namespace Orc.DynamicObjects.Tests
     using Catel.Data;
     using Catel.Runtime.Serialization;
     using NUnit.Framework;
+    using System.ComponentModel;
 
     public class DynamicObservableObjectFacts
     {
@@ -99,12 +100,10 @@ namespace Orc.DynamicObjects.Tests
             }
 
             [TestCase]
-            public void RaisesAdvancedPropertyChangedEvents_WhenSetViaDynamicProperty()
+            public void RaisesPropertyChangedEvents_WhenSetViaDynamicProperty()
             {
                 var counter = 0;
                 var propertyName = default(string);
-                var oldValue = default(object);
-                var newValue = default(object);
                 var observableObject = new CustomObject();
                 dynamic dynamicObservableObject = observableObject;
 
@@ -112,30 +111,24 @@ namespace Orc.DynamicObjects.Tests
                 dynamicObservableObject.Property1 = "oldtest";
                 observableObject.PropertyChanged += (sender, e) =>
                 {
-                    AdvancedPropertyChangedEventArgs args = e as AdvancedPropertyChangedEventArgs;
+                    var args = e as PropertyChangedEventArgs;
                     if (args is not null)
                     {
                         counter++;
                         propertyName = args.PropertyName;
-                        oldValue = args.OldValue;
-                        newValue = args.NewValue;
                     }
                 };
                 dynamicObservableObject.Property1 = "newtest";
 
                 Assert.AreEqual(1, counter);
                 Assert.AreEqual(propertyName, "Property1");
-                Assert.AreEqual(oldValue, "oldtest");
-                Assert.AreEqual(newValue, "newtest");
             }
 
             [TestCase]
-            public void RaisesAdvancedPropertyChangedEvents_WhenSetViaSetValueMethod()
+            public void RaisesPropertyChangedEvents_WhenSetViaSetValueMethod()
             {
                 var counter = 0;
                 var propertyName = default(string);
-                var oldValue = default(object);
-                var newValue = default(object);
                 var observableObject = new CustomObject();
                 dynamic dynamicObservableObject = observableObject;
 
@@ -143,21 +136,17 @@ namespace Orc.DynamicObjects.Tests
                 observableObject.SetValue("Property1", "oldtest");
                 observableObject.PropertyChanged += (sender, e) =>
                 {
-                    AdvancedPropertyChangedEventArgs args = e as AdvancedPropertyChangedEventArgs;
+                    var args = e as PropertyChangedEventArgs;
                     if (args is not null)
                     {
                         counter++;
                         propertyName = args.PropertyName;
-                        oldValue = args.OldValue;
-                        newValue = args.NewValue;
                     }
                 };
                 observableObject.SetValue("Property1", "newtest");
 
                 Assert.AreEqual(1, counter);
                 Assert.AreEqual(propertyName, "Property1");
-                Assert.AreEqual(oldValue, "oldtest");
-                Assert.AreEqual(newValue, "newtest");
             }
 
             [TestCase]

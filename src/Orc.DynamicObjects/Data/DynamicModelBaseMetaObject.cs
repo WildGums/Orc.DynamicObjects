@@ -1,11 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DynamicModelBaseMetaObject.cs" company="WildGums">
-//   Copyright (c) 2008 - 2017 WildGums. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
-
-namespace Orc.DynamicObjects
+﻿namespace Orc.DynamicObjects
 {
     using System;
     using System.Dynamic;
@@ -27,7 +20,7 @@ namespace Orc.DynamicObjects
         private static readonly MethodInfo _getValueFastMethodInfo;
         private static readonly MethodInfo _setValueFastMethodInfo;
 
-        private static readonly CacheStorage<Type, MethodInfo> _registerSimplePropertyCache = new CacheStorage<Type, MethodInfo>();
+        private static readonly CacheStorage<Type, MethodInfo?> _registerSimplePropertyCache = new CacheStorage<Type, MethodInfo?>();
 
         /// <summary>
         /// Initializes static members of the <see cref="DynamicModelBaseMetaObject"/> class.
@@ -39,7 +32,7 @@ namespace Orc.DynamicObjects
             var modelBaseType = typeof(ModelBase);
 
             var getMethods = modelBaseType.GetMethodsEx(bindingFlags).Where(x => x.Name == "GetValueFromPropertyBag");
-            _getValueFastMethodInfo = getMethods.First().MakeGenericMethod(new [] { typeof(object) });
+            _getValueFastMethodInfo = getMethods.First().MakeGenericMethod(new[] { typeof(object) });
 
             var setMethods = modelBaseType.GetMethodsEx(bindingFlags).Where(x => x.Name == "SetValueToPropertyBag");
             _setValueFastMethodInfo = setMethods.First(x => x.IsGenericMethod).MakeGenericMethod(new[] { typeof(object) });
@@ -64,12 +57,15 @@ namespace Orc.DynamicObjects
         /// <returns>The new <see cref="T:System.Dynamic.DynamicMetaObject" /> representing the result of the binding.</returns>
         public override DynamicMetaObject BindSetMember(SetMemberBinder binder, DynamicMetaObject value)
         {
+            ArgumentNullException.ThrowIfNull(binder);
+            ArgumentNullException.ThrowIfNull(value);
+
             var propertyName = binder.Name;
             var propertyType = binder.ReturnType;
 
             RegisterPropertyIfNotYetRegistered(propertyName, propertyType);
 
-            var valueExpression = Expression.Convert(value.Expression, typeof (object));
+            var valueExpression = Expression.Convert(value.Expression, typeof(object));
             var parameters = new Expression[]
             {
                 Expression.Constant(propertyName),
@@ -94,6 +90,8 @@ namespace Orc.DynamicObjects
         /// <returns>The new <see cref="T:System.Dynamic.DynamicMetaObject" /> representing the result of the binding.</returns>
         public override DynamicMetaObject BindGetMember(GetMemberBinder binder)
         {
+            ArgumentNullException.ThrowIfNull(binder);
+
             var propertyName = binder.Name;
             var propertyType = binder.ReturnType;
 
@@ -114,7 +112,15 @@ namespace Orc.DynamicObjects
 
         private void RegisterPropertyIfNotYetRegistered(string propertyName, Type propertyType)
         {
-            var model = (ModelBase)Value;
+            ArgumentNullException.ThrowIfNull(propertyName);
+            ArgumentNullException.ThrowIfNull(propertyType);
+
+            var model = Value as ModelBase;
+            if (model is null)
+            {
+                return;
+            }
+
             if (model.IsPropertyRegistered(propertyName))
             {
                 return;
@@ -124,11 +130,18 @@ namespace Orc.DynamicObjects
             Log.Debug("Register dynamic property '{0}.{1}' of type '{2}'", modelType.GetSafeFullName(false), propertyName, propertyType.GetSafeFullName(false));
 
             var registerPropertyMethodInfo = GetRegisterSimplePropertyMethodInfo(modelType);
+            if (registerPropertyMethodInfo is null)
+            {
+                throw Log.ErrorAndCreateException<InvalidCastException>($"Cannot find register property method on ModelBase");
+            }
+
             registerPropertyMethodInfo.Invoke(model, new object[] { propertyName, propertyType });
         }
 
-        private static MethodInfo GetRegisterSimplePropertyMethodInfo(Type modelBaseType)
+        private static MethodInfo? GetRegisterSimplePropertyMethodInfo(Type modelBaseType)
         {
+            ArgumentNullException.ThrowIfNull(modelBaseType);
+
             return _registerSimplePropertyCache.GetFromCacheOrFetch(modelBaseType, () =>
             {
                 var bindingFlags = BindingFlags.FlattenHierarchy | BindingFlags.Instance | BindingFlags.NonPublic;
