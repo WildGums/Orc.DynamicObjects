@@ -1,11 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DynamicModelBaseFacts.cs" company="WildGums">
-//   Copyright (c) 2008 - 2016 WildGums. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
-
-namespace Orc.DynamicObjects.Tests
+﻿namespace Orc.DynamicObjects.Tests
 {
     using System;
     using System.Dynamic;
@@ -156,7 +149,7 @@ namespace Orc.DynamicObjects.Tests
                 dynamic dynamicObservableObject = observableObject;
 
                 Assert.Throws<ArgumentException>(() => observableObject.SetValue(null, "test"));
-                Assert.Throws<ArgumentException>(() => observableObject.SetValue("", "test"));
+                Assert.Throws<ArgumentException>(() => observableObject.SetValue(string.Empty, "test"));
                 Assert.Throws<ArgumentException>(() => observableObject.SetValue(" ", "test"));
             }
         }

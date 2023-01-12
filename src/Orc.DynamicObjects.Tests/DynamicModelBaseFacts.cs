@@ -1,11 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DynamicModelBaseFacts.cs" company="WildGums">
-//   Copyright (c) 2008 - 2017 WildGums. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
-
-namespace Orc.DynamicObjects.Tests
+﻿namespace Orc.DynamicObjects.Tests
 {
     using System;
     using System.IO;
