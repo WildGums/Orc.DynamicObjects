@@ -1,11 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DynamicModelBaseFacts.cs" company="WildGums">
-//   Copyright (c) 2008 - 2017 WildGums. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
-
-namespace Orc.DynamicObjects.Tests
+﻿namespace Orc.DynamicObjects.Tests
 {
     using System;
     using System.IO;
@@ -31,9 +24,9 @@ namespace Orc.DynamicObjects.Tests
 
                 model.NonExistingGetProperty = "test";
 
-                Assert.IsTrue(dynamicModel.IsPropertyRegistered("NonExistingGetProperty"));
+                Assert.That(dynamicModel.IsPropertyRegistered("NonExistingGetProperty"), Is.True);
 
-                Assert.AreEqual("test", model.NonExistingGetProperty);
+                Assert.That("test", Is.EqualTo(model.NonExistingGetProperty));
             }
         }
 
@@ -46,11 +39,11 @@ namespace Orc.DynamicObjects.Tests
                 dynamic model = new DynamicModel();
                 var dynamicModel = (DynamicModel)model;
 
-                Assert.IsFalse(dynamicModel.IsPropertyRegistered("NonExistingSetProperty"));
+                Assert.That(dynamicModel.IsPropertyRegistered("NonExistingSetProperty"), Is.False);
 
                 model.NonExistingSetProperty = "test";
 
-                Assert.IsTrue(dynamicModel.IsPropertyRegistered("NonExistingSetProperty"));
+                Assert.That(dynamicModel.IsPropertyRegistered("NonExistingSetProperty"), Is.True);
             }
         }
 
@@ -75,8 +68,8 @@ namespace Orc.DynamicObjects.Tests
                     dynamic deserializedModel = serializer.Deserialize(typeof(DynamicModel), memoryStream, null);
                     var deserializedDynamicModel = (DynamicModel) deserializedModel;
 
-                    Assert.IsTrue(deserializedDynamicModel.IsPropertyRegistered("NonExistingProperty"));
-                    Assert.AreEqual("a dynamic value", deserializedModel.NonExistingProperty);
+                    Assert.That(deserializedDynamicModel.IsPropertyRegistered("NonExistingProperty"), Is.True);
+                    Assert.That("a dynamic value", Is.EqualTo(deserializedModel.NonExistingProperty));
                 }
             }
         }

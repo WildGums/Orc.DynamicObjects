@@ -1,11 +1,6 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DynamicObservableObjectMetaObject.cs" company="WildGums">
-//   Copyright (c) 2008 - 2016 WildGums. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
-namespace Orc.DynamicObjects
+﻿namespace Orc.DynamicObjects
 {
+    using System;
     using System.Collections.Generic;
     using System.Dynamic;
     using System.Linq.Expressions;
@@ -27,8 +22,21 @@ namespace Orc.DynamicObjects
         {
             var bindingFlags = BindingFlags.Instance | BindingFlags.Public;
 
-            _getValueMethodInfo = typeof(DynamicObservableObject).GetMethodEx("GetValue", bindingFlags).MakeGenericMethod(new[] { typeof(object) });
-            _setValueMethodInfo = typeof(DynamicObservableObject).GetMethodEx("SetValue", bindingFlags);
+            var getValueMethodInfo = typeof(DynamicObservableObject).GetMethodEx("GetValue", bindingFlags)?.MakeGenericMethod(new[] { typeof(object) });
+            if (getValueMethodInfo is null)
+            {
+                throw new InvalidOperationException("Cannot find GetValue method on DymamicObservableObject");
+            }
+
+            _getValueMethodInfo = getValueMethodInfo;
+
+            var setValueMethodInfo = typeof(DynamicObservableObject).GetMethodEx("SetValue", bindingFlags);
+            if (setValueMethodInfo is null)
+            {
+                throw new InvalidOperationException("Cannot find GetValue method on DymamicObservableObject");
+            }
+
+            _setValueMethodInfo = setValueMethodInfo;
         }
 
         /// <summary>
@@ -48,7 +56,13 @@ namespace Orc.DynamicObjects
         /// <returns>The list of dynamic member names.</returns>
         public override IEnumerable<string> GetDynamicMemberNames()
         {
-            return ((DynamicObservableObject)Value).GetPropertyNames();
+            var obj = Value as DynamicObservableObject;
+            if (obj is null)
+            {
+                return Array.Empty<string>();
+            }
+
+            return obj.GetPropertyNames();
         }
 
         /// <summary>
@@ -59,6 +73,9 @@ namespace Orc.DynamicObjects
         /// <returns>The new <see cref="T:System.Dynamic.DynamicMetaObject" /> representing the result of the binding.</returns>
         public override DynamicMetaObject BindSetMember(SetMemberBinder binder, DynamicMetaObject value)
         {
+            ArgumentNullException.ThrowIfNull(binder);
+            ArgumentNullException.ThrowIfNull(value);
+
             var propertyName = binder.Name;
             var propertyType = binder.ReturnType;
 
@@ -87,6 +104,8 @@ namespace Orc.DynamicObjects
         /// <returns>The new <see cref="T:System.Dynamic.DynamicMetaObject" /> representing the result of the binding.</returns>
         public override DynamicMetaObject BindGetMember(GetMemberBinder binder)
         {
+            ArgumentNullException.ThrowIfNull(binder);
+
             var propertyName = binder.Name;
             var propertyType = binder.ReturnType;
 

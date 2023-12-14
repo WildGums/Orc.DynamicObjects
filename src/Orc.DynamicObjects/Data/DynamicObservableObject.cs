@@ -1,15 +1,8 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DynamicObservableObject.cs" company="WildGums">
-//   Copyright (c) 2008 - 2016 WildGums. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
-namespace Orc.DynamicObjects
+﻿namespace Orc.DynamicObjects
 {
     using System;
     using System.Collections.Generic;
     using System.Dynamic;
-    using System.Linq;
     using System.Linq.Expressions;
     using Catel;
     using Catel.Data;
@@ -22,7 +15,7 @@ namespace Orc.DynamicObjects
         /// <summary>
         /// Dynamic properties.
         /// </summary>
-        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
+        private readonly Dictionary<string, object?> _dynamicProperties = new Dictionary<string, object?>();
 
         /// <summary>
         /// Get dynamic property value.
@@ -30,14 +23,17 @@ namespace Orc.DynamicObjects
         /// <typeparam name="T">Type of property value.</typeparam>
         /// <param name="propertyName">Property name.</param>
         /// <returns>Property value.</returns>
-        public T GetValue<T>(string propertyName)
+        public T? GetValue<T>(string propertyName)
         {
             Argument.IsNotNullOrWhitespace(() => propertyName);
 
-            var value = default(object);
-            _dynamicProperties.TryGetValue(propertyName, out value);
+            _dynamicProperties.TryGetValue(propertyName, out var value);
 
-            if (value is null) return default(T);
+            if (value is null)
+            {
+                return default;
+            }
+
             return (T)value;
         }
 
@@ -50,11 +46,9 @@ namespace Orc.DynamicObjects
         {
             Argument.IsNotNullOrWhitespace(() => propertyName);
 
-            var oldValue = default(object);
-            _dynamicProperties.TryGetValue(propertyName, out oldValue);
             _dynamicProperties[propertyName] = value;
 
-            RaisePropertyChanged(propertyName, oldValue, value);
+            RaisePropertyChanged(propertyName);
         }
 
         /// <summary>
@@ -64,6 +58,8 @@ namespace Orc.DynamicObjects
         /// <returns>The <see cref="T:System.Dynamic.DynamicMetaObject" /> to bind this object.</returns>
         public DynamicMetaObject GetMetaObject(Expression parameter)
         {
+            ArgumentNullException.ThrowIfNull(parameter);
+
             return new DynamicObservableObjectMetaObject(parameter, this);
         }
 

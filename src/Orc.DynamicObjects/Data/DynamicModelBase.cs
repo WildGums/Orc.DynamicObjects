@@ -1,25 +1,17 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DynamicModelBase.cs" company="WildGums">
-//   Copyright (c) 2008 - 2017 WildGums. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
-
-namespace Orc.DynamicObjects
+﻿namespace Orc.DynamicObjects
 {
     using System;
     using System.Dynamic;
     using System.Linq.Expressions;
-
+    using System.Reflection;
     using Catel.Data;
     using Catel.Logging;
+    using Catel.Reflection;
 
     /// <summary>
     /// Dynamic model base implementing the <see cref="IDynamicMetaObjectProvider"/>.
     /// </summary>
-#if NET
     [Serializable]
-#endif
     public class DynamicModelBase : ModelBase, IDynamicMetaObjectProvider
     {
         /// <summary>
@@ -35,6 +27,9 @@ namespace Orc.DynamicObjects
         /// <returns>The <see cref="PropertyData"/>.</returns>
         internal protected void RegisterDynamicProperty(string name, Type type)
         {
+            ArgumentNullException.ThrowIfNull(name);
+            ArgumentNullException.ThrowIfNull(type);
+
             var modelType = GetType();
 
             if (IsPropertyRegistered(modelType, name))
@@ -44,7 +39,7 @@ namespace Orc.DynamicObjects
 
             Log.Debug("Registering dynamic property '{0}.{1}'", modelType.FullName, name);
 
-            var propertyData = RegisterProperty(name, type);
+            var propertyData = RegisterPropertyNonGeneric(name, type);
 
             InitializePropertyAfterConstruction(propertyData);
         }
@@ -57,6 +52,8 @@ namespace Orc.DynamicObjects
         /// <exception cref="System.NotImplementedException"></exception>
         public DynamicMetaObject GetMetaObject(Expression parameter)
         {
+            ArgumentNullException.ThrowIfNull(parameter);
+
             var metaObject = new DynamicModelBaseMetaObject(parameter, this);
             return metaObject;
         }

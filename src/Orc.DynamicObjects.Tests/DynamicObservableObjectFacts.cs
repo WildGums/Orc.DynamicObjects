@@ -1,11 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DynamicModelBaseFacts.cs" company="WildGums">
-//   Copyright (c) 2008 - 2016 WildGums. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
-
-namespace Orc.DynamicObjects.Tests
+﻿namespace Orc.DynamicObjects.Tests
 {
     using System;
     using System.Dynamic;
@@ -15,6 +8,7 @@ namespace Orc.DynamicObjects.Tests
     using Catel.Data;
     using Catel.Runtime.Serialization;
     using NUnit.Framework;
+    using System.ComponentModel;
 
     public class DynamicObservableObjectFacts
     {
@@ -39,17 +33,17 @@ namespace Orc.DynamicObjects.Tests
                 dynamicObservableObject.Property4 = 1.2M;
                 dynamicObservableObject.Property5 = dt;
 
-                Assert.AreEqual("test", dynamicObservableObject.Property1);
-                Assert.AreEqual(100, dynamicObservableObject.Property2);
-                Assert.AreEqual(3.14F, dynamicObservableObject.Property3);
-                Assert.AreEqual(1.2M, dynamicObservableObject.Property4);
-                Assert.AreEqual(dt, dynamicObservableObject.Property5);
+                Assert.That("test", Is.EqualTo(dynamicObservableObject.Property1));
+                Assert.That(100, Is.EqualTo(dynamicObservableObject.Property2));
+                Assert.That(3.14F, Is.EqualTo(dynamicObservableObject.Property3));
+                Assert.That(1.2M, Is.EqualTo(dynamicObservableObject.Property4));
+                Assert.That(dt, Is.EqualTo(dynamicObservableObject.Property5));
 
-                Assert.AreEqual("test", observableObject.GetValue<string>("Property1"));
-                Assert.AreEqual(100, observableObject.GetValue<int>("Property2"));
-                Assert.AreEqual(3.14F, observableObject.GetValue<float>("Property3"));
-                Assert.AreEqual(1.2M, observableObject.GetValue<decimal>("Property4"));
-                Assert.AreEqual(dt, observableObject.GetValue<DateTime>("Property5"));
+                Assert.That(observableObject.GetValue<string>("Property1"), Is.EqualTo("test"));
+                Assert.That(observableObject.GetValue<int>("Property2"), Is.EqualTo(100));
+                Assert.That(observableObject.GetValue<float>("Property3"), Is.EqualTo(3.14F));
+                Assert.That(observableObject.GetValue<decimal>("Property4"), Is.EqualTo(1.2M));
+                Assert.That(observableObject.GetValue<DateTime>("Property5"), Is.EqualTo(dt));
             }
 
             [TestCase]
@@ -66,17 +60,17 @@ namespace Orc.DynamicObjects.Tests
                 observableObject.SetValue("Property4", 1.2M);
                 observableObject.SetValue("Property5", dt);
 
-                Assert.AreEqual("test", dynamicObservableObject.Property1);
-                Assert.AreEqual(100, dynamicObservableObject.Property2);
-                Assert.AreEqual(3.14F, dynamicObservableObject.Property3);
-                Assert.AreEqual(1.2M, dynamicObservableObject.Property4);
-                Assert.AreEqual(dt, dynamicObservableObject.Property5);
+                Assert.That("test", Is.EqualTo(dynamicObservableObject.Property1));
+                Assert.That(100, Is.EqualTo(dynamicObservableObject.Property2));
+                Assert.That(3.14F, Is.EqualTo(dynamicObservableObject.Property3));
+                Assert.That(1.2M, Is.EqualTo(dynamicObservableObject.Property4));
+                Assert.That(dt, Is.EqualTo(dynamicObservableObject.Property5));
 
-                Assert.AreEqual("test", observableObject.GetValue<string>("Property1"));
-                Assert.AreEqual(100, observableObject.GetValue<int>("Property2"));
-                Assert.AreEqual(3.14F, observableObject.GetValue<float>("Property3"));
-                Assert.AreEqual(1.2M, observableObject.GetValue<decimal>("Property4"));
-                Assert.AreEqual(dt, observableObject.GetValue<DateTime>("Property5"));
+                Assert.That(observableObject.GetValue<string>("Property1"), Is.EqualTo("test"));
+                Assert.That(observableObject.GetValue<int>("Property2"), Is.EqualTo(100));
+                Assert.That(observableObject.GetValue<float>("Property3"), Is.EqualTo(3.14F));
+                Assert.That(observableObject.GetValue<decimal>("Property4"), Is.EqualTo(1.2M));
+                Assert.That(observableObject.GetValue<DateTime>("Property5"), Is.EqualTo(dt));
             }
 
             [TestCase]
@@ -85,26 +79,24 @@ namespace Orc.DynamicObjects.Tests
                 var observableObject = new CustomObject();
                 dynamic dynamicObservableObject = observableObject;
 
-                Assert.AreEqual(null, observableObject.GetValue<string>("Property1"));
-                Assert.AreEqual(0, observableObject.GetValue<int>("Property2"));
-                Assert.AreEqual(0F, observableObject.GetValue<float>("Property3"));
-                Assert.AreEqual(0M, observableObject.GetValue<decimal>("Property4"));
-                Assert.AreEqual(DateTime.MinValue, observableObject.GetValue<DateTime>("Property5"));
+                Assert.That(observableObject.GetValue<string>("Property1"), Is.EqualTo(null));
+                Assert.That(observableObject.GetValue<int>("Property2"), Is.EqualTo(0));
+                Assert.That(observableObject.GetValue<float>("Property3"), Is.EqualTo(0F));
+                Assert.That(observableObject.GetValue<decimal>("Property4"), Is.EqualTo(0M));
+                Assert.That(observableObject.GetValue<DateTime>("Property5"), Is.EqualTo(DateTime.MinValue));
                 //
-                Assert.AreEqual(null, observableObject.GetValue<string>("Property1"));
-                Assert.AreEqual(null, observableObject.GetValue<int?>("Property2"));
-                Assert.AreEqual(null, observableObject.GetValue<float?>("Property3"));
-                Assert.AreEqual(null, observableObject.GetValue<decimal?>("Property4"));
-                Assert.AreEqual(null, observableObject.GetValue<DateTime?>("Property5"));
+                Assert.That(observableObject.GetValue<string>("Property1"), Is.EqualTo(null));
+                Assert.That(observableObject.GetValue<int?>("Property2"), Is.EqualTo(null));
+                Assert.That(observableObject.GetValue<float?>("Property3"), Is.EqualTo(null));
+                Assert.That(observableObject.GetValue<decimal?>("Property4"), Is.EqualTo(null));
+                Assert.That(observableObject.GetValue<DateTime?>("Property5"), Is.EqualTo(null));
             }
 
             [TestCase]
-            public void RaisesAdvancedPropertyChangedEvents_WhenSetViaDynamicProperty()
+            public void RaisesPropertyChangedEvents_WhenSetViaDynamicProperty()
             {
                 var counter = 0;
                 var propertyName = default(string);
-                var oldValue = default(object);
-                var newValue = default(object);
                 var observableObject = new CustomObject();
                 dynamic dynamicObservableObject = observableObject;
 
@@ -112,30 +104,24 @@ namespace Orc.DynamicObjects.Tests
                 dynamicObservableObject.Property1 = "oldtest";
                 observableObject.PropertyChanged += (sender, e) =>
                 {
-                    AdvancedPropertyChangedEventArgs args = e as AdvancedPropertyChangedEventArgs;
+                    var args = e as PropertyChangedEventArgs;
                     if (args is not null)
                     {
                         counter++;
                         propertyName = args.PropertyName;
-                        oldValue = args.OldValue;
-                        newValue = args.NewValue;
                     }
                 };
                 dynamicObservableObject.Property1 = "newtest";
 
-                Assert.AreEqual(1, counter);
-                Assert.AreEqual(propertyName, "Property1");
-                Assert.AreEqual(oldValue, "oldtest");
-                Assert.AreEqual(newValue, "newtest");
+                Assert.That(counter, Is.EqualTo(1));
+                Assert.That(propertyName, Is.EqualTo("Property1"));
             }
 
             [TestCase]
-            public void RaisesAdvancedPropertyChangedEvents_WhenSetViaSetValueMethod()
+            public void RaisesPropertyChangedEvents_WhenSetViaSetValueMethod()
             {
                 var counter = 0;
                 var propertyName = default(string);
-                var oldValue = default(object);
-                var newValue = default(object);
                 var observableObject = new CustomObject();
                 dynamic dynamicObservableObject = observableObject;
 
@@ -143,21 +129,17 @@ namespace Orc.DynamicObjects.Tests
                 observableObject.SetValue("Property1", "oldtest");
                 observableObject.PropertyChanged += (sender, e) =>
                 {
-                    AdvancedPropertyChangedEventArgs args = e as AdvancedPropertyChangedEventArgs;
+                    var args = e as PropertyChangedEventArgs;
                     if (args is not null)
                     {
                         counter++;
                         propertyName = args.PropertyName;
-                        oldValue = args.OldValue;
-                        newValue = args.NewValue;
                     }
                 };
                 observableObject.SetValue("Property1", "newtest");
 
-                Assert.AreEqual(1, counter);
-                Assert.AreEqual(propertyName, "Property1");
-                Assert.AreEqual(oldValue, "oldtest");
-                Assert.AreEqual(newValue, "newtest");
+                Assert.That(counter, Is.EqualTo(1));
+                Assert.That(propertyName, Is.EqualTo("Property1"));
             }
 
             [TestCase]
@@ -167,7 +149,7 @@ namespace Orc.DynamicObjects.Tests
                 dynamic dynamicObservableObject = observableObject;
 
                 Assert.Throws<ArgumentException>(() => observableObject.SetValue(null, "test"));
-                Assert.Throws<ArgumentException>(() => observableObject.SetValue("", "test"));
+                Assert.Throws<ArgumentException>(() => observableObject.SetValue(string.Empty, "test"));
                 Assert.Throws<ArgumentException>(() => observableObject.SetValue(" ", "test"));
             }
         }
@@ -192,12 +174,12 @@ namespace Orc.DynamicObjects.Tests
                 // Get dynamic member names and sort (we get keys from dictionary where order is unspecified, so it's better to sort by names).
                 var memberNames = observableObject.GetMetaObject(Expression.Constant(observableObject)).GetDynamicMemberNames().ToList();
                 memberNames.Sort();
-                Assert.AreEqual(5, memberNames.Count);
-                Assert.AreEqual("Property1", memberNames[0]);
-                Assert.AreEqual("Property2", memberNames[1]);
-                Assert.AreEqual("Property3", memberNames[2]);
-                Assert.AreEqual("Property4", memberNames[3]);
-                Assert.AreEqual("Property5", memberNames[4]);
+                Assert.That(memberNames.Count, Is.EqualTo(5));
+                Assert.That(memberNames[0], Is.EqualTo("Property1"));
+                Assert.That(memberNames[1], Is.EqualTo("Property2"));
+                Assert.That(memberNames[2], Is.EqualTo("Property3"));
+                Assert.That(memberNames[3], Is.EqualTo("Property4"));
+                Assert.That(memberNames[4], Is.EqualTo("Property5"));
             }
 
             [TestCase]
@@ -217,12 +199,12 @@ namespace Orc.DynamicObjects.Tests
                 // Get dynamic member names and sort (we get keys from dictionary where order is unspecified, so it's better to sort by names).
                 var memberNames = observableObject.GetMetaObject(Expression.Constant(observableObject)).GetDynamicMemberNames().ToList();
                 memberNames.Sort();
-                Assert.AreEqual(5, memberNames.Count);
-                Assert.AreEqual("Property1", memberNames[0]);
-                Assert.AreEqual("Property2", memberNames[1]);
-                Assert.AreEqual("Property3", memberNames[2]);
-                Assert.AreEqual("Property4", memberNames[3]);
-                Assert.AreEqual("Property5", memberNames[4]);
+                Assert.That(memberNames.Count, Is.EqualTo(5));
+                Assert.That(memberNames[0], Is.EqualTo("Property1"));
+                Assert.That(memberNames[1], Is.EqualTo("Property2"));
+                Assert.That(memberNames[2], Is.EqualTo("Property3"));
+                Assert.That(memberNames[3], Is.EqualTo("Property4"));
+                Assert.That(memberNames[4], Is.EqualTo("Property5"));
             }
         }
     }
