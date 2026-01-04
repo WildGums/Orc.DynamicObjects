@@ -1,12 +1,8 @@
 ﻿namespace Orc.DynamicObjects.Tests
 {
     using System;
-    using System.Dynamic;
     using System.Linq;
     using System.Linq.Expressions;
-    using System.IO;
-    using Catel.Data;
-    using Catel.Runtime.Serialization;
     using NUnit.Framework;
     using System.ComponentModel;
 

@@ -9,13 +9,14 @@
     using Catel.Data;
     using Catel.Logging;
     using Catel.Reflection;
+    using Microsoft.Extensions.Logging;
 
     /// <summary>
     /// Class containing metadata for the <see cref="DynamicModelBase"/>.
     /// </summary>
     public class DynamicModelBaseMetaObject : DynamicMetaObject
     {
-        private static readonly ILog Log = LogManager.GetCurrentClassLogger();
+        private static readonly ILogger Logger = LogManager.GetLogger(typeof(DynamicModelBaseMetaObject));
 
         private static readonly MethodInfo _getValueFastMethodInfo;
         private static readonly MethodInfo _setValueFastMethodInfo;
@@ -127,12 +128,12 @@
             }
 
             var modelType = model.GetType();
-            Log.Debug("Register dynamic property '{0}.{1}' of type '{2}'", modelType.GetSafeFullName(false), propertyName, propertyType.GetSafeFullName(false));
+            Logger.LogDebug("Register dynamic property '{0}.{1}' of type '{2}'", modelType.GetSafeFullName(false), propertyName, propertyType.GetSafeFullName(false));
 
             var registerPropertyMethodInfo = GetRegisterSimplePropertyMethodInfo(modelType);
             if (registerPropertyMethodInfo is null)
             {
-                throw Log.ErrorAndCreateException<InvalidCastException>($"Cannot find register property method on ModelBase");
+                throw Logger.LogErrorAndCreateException<InvalidCastException>($"Cannot find register property method on ModelBase");
             }
 
             registerPropertyMethodInfo.Invoke(model, new object[] { propertyName, propertyType });

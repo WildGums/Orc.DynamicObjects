@@ -3,10 +3,9 @@
     using System;
     using System.Dynamic;
     using System.Linq.Expressions;
-    using System.Reflection;
     using Catel.Data;
     using Catel.Logging;
-    using Catel.Reflection;
+    using Microsoft.Extensions.Logging;
 
     /// <summary>
     /// Dynamic model base implementing the <see cref="IDynamicMetaObjectProvider"/>.
@@ -14,10 +13,7 @@
     [Serializable]
     public class DynamicModelBase : ModelBase, IDynamicMetaObjectProvider
     {
-        /// <summary>
-        /// The log.
-        /// </summary>
-        private static readonly ILog Log = LogManager.GetCurrentClassLogger();
+        private static readonly ILogger Logger = LogManager.GetLogger(typeof(DynamicModelBase));
 
         /// <summary>
         /// Registers a simple property, which means only the name and type are required.
@@ -37,7 +33,7 @@
                 return;
             }
 
-            Log.Debug("Registering dynamic property '{0}.{1}'", modelType.FullName, name);
+            Logger.LogDebug("Registering dynamic property '{0}.{1}'", modelType.FullName, name);
 
             var propertyData = RegisterPropertyNonGeneric(name, type);
 

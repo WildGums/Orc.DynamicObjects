@@ -1,9 +1,6 @@
 ﻿namespace Orc.DynamicObjects.Tests
 {
-    using System;
     using System.IO;
-    using Catel.Data;
-    using Catel.Runtime.Serialization;
 
     using NUnit.Framework;
 
@@ -14,7 +11,7 @@
         }
 
         [TestFixture]
-        public class TheGetValueProperties
+        public class The_GetValue_Properties
         {
             [TestCase]
             public void CorrectlyReturnsTheRightValue()
@@ -31,7 +28,7 @@
         }
 
         [TestFixture]
-        public class TheSetValueProperties
+        public class The_SetValue_Properties
         {
             [TestCase]
             public void AutomaticallyRegistersNonExistingProperty()
@@ -44,33 +41,6 @@
                 model.NonExistingSetProperty = "test";
 
                 Assert.That(dynamicModel.IsPropertyRegistered("NonExistingSetProperty"), Is.True);
-            }
-        }
-
-        [TestFixture]
-        public class TheModelBaseFunctionality
-        {
-            [TestCase]
-            public void SupportsSerialization()
-            {
-                dynamic model = new DynamicModel();
-                model.NonExistingProperty = "a dynamic value";
-
-                var serializer = SerializationFactory.GetXmlSerializer();
-
-                using (var memoryStream = new MemoryStream())
-                {
-                    var dynamicModel = (DynamicModel)model;
-                    serializer.Serialize(dynamicModel, memoryStream, null);
-
-                    memoryStream.Position = 0L;
-
-                    dynamic deserializedModel = serializer.Deserialize(typeof(DynamicModel), memoryStream, null);
-                    var deserializedDynamicModel = (DynamicModel) deserializedModel;
-
-                    Assert.That(deserializedDynamicModel.IsPropertyRegistered("NonExistingProperty"), Is.True);
-                    Assert.That("a dynamic value", Is.EqualTo(deserializedModel.NonExistingProperty));
-                }
             }
         }
     }

@@ -35,4 +35,8 @@ namespace Orc.DynamicObjects
         public override System.Dynamic.DynamicMetaObject BindSetMember(System.Dynamic.SetMemberBinder binder, System.Dynamic.DynamicMetaObject value) { }
         public override System.Collections.Generic.IEnumerable<string> GetDynamicMemberNames() { }
     }
+    public static class OrcDynamicObjectsModule
+    {
+        public static Microsoft.Extensions.DependencyInjection.IServiceCollection AddOrcDynamicObjects(this Microsoft.Extensions.DependencyInjection.IServiceCollection serviceCollection) { }
+    }
 }
