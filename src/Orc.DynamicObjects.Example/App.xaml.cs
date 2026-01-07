@@ -4,19 +4,11 @@
     using System.Windows;
     using Catel;
     using Catel.IoC;
-    using Catel.Logging;
     using Catel.Services;
-    using Catel.Windows;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
-    using Orc.Automation;
-    using Orc.Controls;
     using Orc.DynamicObjects.Views;
-    using Orc.FileSystem;
-    using Orc.Serialization.Json;
-    using Orc.SystemInfo;
-    using Orc.Theming;
     using Orchestra;
 
     /// <summary>
