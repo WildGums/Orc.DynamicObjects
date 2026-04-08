@@ -1,14 +1,13 @@
-﻿namespace Orc.DynamicObjects.ViewModels
-{
-    using System;
-    using Catel.MVVM;
+﻿namespace Orc.DynamicObjects.ViewModels;
 
-    public class MainViewModel : ViewModelBase
+using System;
+using Catel.MVVM;
+
+public class MainViewModel : ViewModelBase
+{
+    public MainViewModel(IServiceProvider serviceProvider)
+        : base(serviceProvider)
     {
-        public MainViewModel(IServiceProvider serviceProvider)
-            : base(serviceProvider)
-        {
-            Title = "Orc.DynamicObjects example";
-        }
+        Title = "Orc.DynamicObjects example";
     }
 }
