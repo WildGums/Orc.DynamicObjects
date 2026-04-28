@@ -36,3 +36,10 @@ namespace Orc.DynamicObjects
         public override System.Collections.Generic.IEnumerable<string> GetDynamicMemberNames() { }
     }
 }
+namespace Orc
+{
+    public static class OrcDynamicObjectsModule
+    {
+        public static Microsoft.Extensions.DependencyInjection.IServiceCollection AddOrcDynamicObjects(this Microsoft.Extensions.DependencyInjection.IServiceCollection serviceCollection) { }
+    }
+}
