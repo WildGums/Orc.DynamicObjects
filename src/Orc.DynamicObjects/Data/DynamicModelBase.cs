@@ -33,7 +33,7 @@ public class DynamicModelBase : ModelBase, IDynamicMetaObjectProvider
             return;
         }
 
-        Logger.LogDebug("Registering dynamic property '{0}.{1}'", modelType.FullName, name);
+        Logger.LogDebug("Registering dynamic property '{TypeFullName}.{Name}'", modelType.FullName, name);
 
         var propertyData = RegisterPropertyNonGeneric(name, type);
 
