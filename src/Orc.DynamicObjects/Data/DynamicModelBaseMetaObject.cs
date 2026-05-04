@@ -128,7 +128,7 @@ public class DynamicModelBaseMetaObject : DynamicMetaObject
         }
 
         var modelType = model.GetType();
-        Logger.LogDebug("Register dynamic property '{0}.{1}' of type '{2}'", modelType.GetSafeFullName(false), propertyName, propertyType.GetSafeFullName(false));
+        Logger.LogDebug("Register dynamic property '{TypeFullName}.{PropertyName}' of type '{PropertyTypeFullName}'", modelType.GetSafeFullName(false), propertyName, propertyType.GetSafeFullName(false));
 
         var registerPropertyMethodInfo = GetRegisterSimplePropertyMethodInfo(modelType);
         if (registerPropertyMethodInfo is null)
